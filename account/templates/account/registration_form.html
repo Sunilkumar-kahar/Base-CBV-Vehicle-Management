@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Manage Registration form</title>
+    <style>
+        .errorcss{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration form</h1>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for error in form.non_field_errors%}
+            <span>{{error | striptags}}</span> </br>
+        {% endfor%}
+        {% for field in form %}
+            <label for="{{field.id_for_label}}">{{field.label}}</label>
+            {{field}}
+            {% for error in field.errors %}
+            <span class="errorcss">{{error|striptags}}</span>
+            {% endfor %} 
+            <br/>
+        {% endfor %}
+        <button value="submit">SUBMIT</button>
+    </form>
+</body>
+</html>
