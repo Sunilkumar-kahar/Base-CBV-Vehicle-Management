@@ -51,7 +51,10 @@
             <td>
                 <a href="{% url 'edit_vehicle' vehicle.id %}"><button>Edit</button></a>
                 {% if perms.vehicle.delete_vehicle %}
-                <a href="{% url 'delete_vehicle' vehicle.id %}"><button>Delete</button></a>
+                <form action="{% url 'delete_vehicle' vehicle.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
                 {% endif %}
             </td>
             {% endif %}
